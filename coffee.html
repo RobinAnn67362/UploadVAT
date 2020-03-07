@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<head>
+
+
+    <title>Swiper demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <style>
+        .coffee-container {
+            width: 100px;
+            height: 93px;
+            position: absolute;
+            top: calc(50% - 47px);
+            left: calc(50% - 50px);
+        }
+
+        .coffee-header {
+            width: 100%;
+            height: 27px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: lightgreen;
+            border-radius: 3px;
+        }
+
+        .coffee-header__buttons {
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            top: 8px;
+            background-color: #282323;
+            border-radius: 50%;
+        }
+
+        .coffee-header__buttons::after {
+            content: "";
+            width: 2px;
+            height: 3px;
+            position: absolute;
+            bottom: -3px;
+            left: calc(50% - 1px);
+            background-color: #615e5e;
+        }
+
+        .coffee-header__button-one {
+            left: 5px;
+        }
+
+        .coffee-header__button-two {
+            left: 17px;
+        }
+
+        .coffee-header__display {
+            width: 17px;
+            height: 17px;
+            position: absolute;
+            top: calc(50% - 8px);
+            left: calc(50% - 8px);
+            border-radius: 50%;
+            background-color: #9acfc5;
+            border: 2px solid #43beae;
+            box-sizing: border-box;
+        }
+
+        .coffee-header__details {
+            width: 3px;
+            height: 7px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            background-color: #9b9091;
+            box-shadow: -8px 0 0 #9b9091, -16px 0 0 #9b9091;
+        }
+
+        .coffee-medium {
+            width: 90%;
+            height: 53px;
+            position: absolute;
+            top: 27px;
+            left: calc(50% - 45%);
+            background-color: lightskyblue;
+        }
+
+        .coffee-medium:before {
+            content: "";
+            width: 90%;
+            height: 33px;
+            background-color: #776f6e;
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 45%);
+            border-radius: 7px 7px 0 0;
+        }
+
+        .coffe-medium__exit {
+            width: 20px;
+            height: 7px;
+            position: absolute;
+            top: 0;
+            left: calc(50% - 10px);
+            background-color: #231f20;
+        }
+
+        .coffe-medium__exit::before {
+            content: "";
+            width: 17px;
+            height: 7px;
+            border-radius: 0 0 50% 50%;
+            position: absolute;
+            bottom: -7px;
+            left: calc(50% - 8px);
+            background-color: #231f20;
+        }
+
+        .coffe-medium__exit::after {
+            content: "";
+            width: 4px;
+            height: 3px;
+            position: absolute;
+            bottom: -10px;
+            left: calc(50% - 2px);
+            background-color: #231f20;
+        }
+
+        .coffee-medium__arm {
+            width: 23px;
+            height: 7px;
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            background-color: #231f20;
+        }
+
+        .coffee-medium__arm::before {
+            content: "";
+            width: 5px;
+            height: 2px;
+            position: absolute;
+            top: 2px;
+            left: -5px;
+            background-color: #9e9495;
+        }
+
+        .coffee-medium__cup {
+            width: 27px;
+            height: 16px;
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 13px);
+            background-color: #FFF;
+            border-radius: 0 0 23px 23px / 0 0 37px 37px;
+        }
+
+        .coffee-medium__cup .cup-body-text {
+            position: absolute;
+            font-size: 12px;
+            -webkit-transform-origin-x: 0;
+            -webkit-transform: scale(0.60);
+            transform: scale(0.60);
+            z-index: 100000;
+            margin-left: 4px;
+        }
+
+        .coffee-medium__cup::after {
+            content: "";
+            width: 7px;
+            height: 7px;
+            position: absolute;
+            top: 2px;
+            right: -4px;
+            border: 2px solid #FFF;
+            border-radius: 50%;
+            /* z-index: -1; */
+        }
+
+        @keyframes liquid {
+            0% {
+                height: 0px;
+                opacity: 1;
+            }
+
+            5% {
+                height: 0px;
+                opacity: 1;
+            }
+
+            20% {
+                height: 21px;
+                opacity: 1;
+            }
+
+            95% {
+                height: 21px;
+                opacity: 1;
+            }
+
+            100% {
+                height: 21px;
+                opacity: 0;
+            }
+        }
+
+        .coffee-medium__liquid {
+            width: 2px;
+            height: 21px;
+            opacity: 0;
+            position: absolute;
+            top: 17px;
+            left: calc(50% - 1px);
+            background-color: #74372b;
+            animation: liquid 3s 1s linear infinite;
+        }
+
+        .coffee-medium__smoke {
+            width: 3px;
+            height: 7px;
+            position: absolute;
+            border-radius: 2px;
+            background-color: #b3aeae;
+        }
+
+        @keyframes smokeOne {
+            0% {
+                bottom: 7px;
+                opacity: 0;
+            }
+
+            40% {
+                bottom: 17px;
+                opacity: .5;
+            }
+
+            80% {
+                bottom: 27px;
+                opacity: .3;
+            }
+
+            100% {
+                bottom: 27px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes smokeTwo {
+            0% {
+                bottom: 13px;
+                opacity: 0;
+            }
+
+            40% {
+                bottom: 23px;
+                opacity: .5;
+            }
+
+            80% {
+                bottom: 27px;
+                opacity: .3;
+            }
+
+            100% {
+                bottom: 27px;
+                opacity: 0;
+            }
+        }
+
+        .coffee-medium__smoke-one {
+            opacity: 0;
+            bottom: 17px;
+            left: 34px;
+            animation: smokeOne 3s 1s linear infinite;
+        }
+
+        .coffee-medium__smoke-two {
+            opacity: 0;
+            bottom: 23px;
+            left: 39px;
+            animation: smokeTwo 3s 2s linear infinite;
+        }
+
+        .coffee-medium__smoke-three {
+            opacity: 0;
+            bottom: 22px;
+            right: 39px;
+            animation: smokeTwo 3s 3s linear infinite;
+        }
+
+        .coffee-medium__smoke-for {
+            opacity: 0;
+            bottom: 17px;
+            right: 34px;
+            animation: smokeOne 3s 2s linear infinite;
+        }
+
+        .coffee-footer {
+            width: 95%;
+            height: 5px;
+            position: absolute;
+            bottom: 8px;
+            left: calc(50% - 47.5%);
+            background-color: #41bdad;
+            border-radius: 3px;
+        }
+
+        .coffee-footer::after {
+            content: "";
+            width: 106%;
+            height: 9px;
+            position: absolute;
+            bottom: -8px;
+            left: -3px;
+            background-color: #000;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="coffee-container">
+        <div class="coffee-header">
+            <div class="coffee-header__buttons coffee-header__button-one"></div>
+            <div class="coffee-header__buttons coffee-header__button-two"></div>
+            <div class="coffee-header__display"></div>
+            <div class="coffee-header__details"></div>
+        </div>
+        <div class="coffee-medium">
+            <div class="coffe-medium__exit"></div>
+            <div class="coffee-medium__arm"></div>
+            <div class="coffee-medium__liquid"></div>
+            <div class="coffee-medium__smoke coffee-medium__smoke-one"></div>
+            <div class="coffee-medium__smoke coffee-medium__smoke-two"></div>
+            <div class="coffee-medium__smoke coffee-medium__smoke-three"></div>
+            <div class="coffee-medium__smoke coffee-medium__smoke-for"></div>
+            <div class="coffee-medium__cup">
+                <div class="cup-body-text">Totole</div>
+            </div>
+        </div>
+        <div class="coffee-footer"></div>
+        <div class="loading-text">loading...</div>
+    </div>
+</body>
+
+</html>
